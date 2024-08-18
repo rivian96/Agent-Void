@@ -20,10 +20,6 @@ function Get-OSInformation {
     Write-Host "System Manufacturer: " (Get-WmiObject -Class Win32_ComputerSystem).Manufacturer
     Write-Host "System Model: " (Get-WmiObject -Class Win32_ComputerSystem).Model
     
-    # Get Installed DotNet Versions
-    $dotNetVersions = (Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse | Get-ItemProperty -Name Version -ErrorAction SilentlyContinue).Version
-    Write-Host "Installed .NET Versions: " $dotNetVersions -join ", "
-    
     # Get Uptime
     $uptime = (Get-WmiObject -Class Win32_OperatingSystem).LastBootUpTime
     $uptimeDuration = (Get-Date) - $uptime
